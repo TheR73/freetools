@@ -847,6 +847,31 @@
     </div>
 
     <script>
+        fetch('/tools.json')
+  .then(response => response.json())
+  .then(data => {
+    // Featured Tools
+    const featuredContainer = document.getElementById("featured-tools");
+    data.featured.forEach(tool => {
+      featuredContainer.innerHTML += `
+        <div class="tool-card">
+          <h3>${tool.name}</h3>
+          <p>${tool.description}</p>
+          <a href="${tool.url}" target="_blank">Visit</a>
+        </div>`;
+    });
+
+    // All Tools
+    const allContainer = document.getElementById("all-tools");
+    data.all.forEach(tool => {
+      allContainer.innerHTML += `
+        <div class="tool-card">
+          <h3>${tool.name}</h3>
+          <p>${tool.description}</p>
+          <a href="${tool.url}" target="_blank">Visit</a>
+        </div>`;
+    });
+  });
         let isAdminLoggedIn = false;
         let currentSection = '';
         
