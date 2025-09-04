@@ -1317,5 +1317,380 @@
             }
         });
     </script>
+    <footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>ToolGrid</h3>
+            <p>Discover the perfect tools for your projects. We curate the best resources across all categories to help you work smarter.</p>
+            <div class="social-links">
+                <a href="#"><span>📱</span> Twitter</a>
+                <a href="#"><span>💼</span> LinkedIn</a>
+                <a href="#"><span>📸</span> Instagram</a>
+            </div>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Company</h4>
+            <ul>
+                <li><a href="#" onclick="showSection('about')">About Us</a></li>
+                <li><a href="#" onclick="showSection('team')">Our Team</a></li>
+                <li><a href="#" onclick="showSection('careers')">Careers</a></li>
+                <li><a href="#" onclick="showSection('contact')">Contact</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Resources</h4>
+            <ul>
+                <li><a href="#" onclick="showSection('blog')">Blog</a></li>
+                <li><a href="#" onclick="showSection('tutorials')">Tutorials</a></li>
+                <li><a href="#" onclick="showSection('webinars')">Webinars</a></li>
+                <li><a href="#" onclick="showSection('faq')">FAQ</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Legal</h4>
+            <ul>
+                <li><a href="#" onclick="showSection('privacy')">Privacy Policy</a></li>
+                <li><a href="#" onclick="showSection('terms')">Terms of Service</a></li>
+                <li><a href="#" onclick="showSection('cookies')">Cookie Policy</a></li>
+                <li><a href="#" onclick="showSection('disclaimer')">Disclaimer</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Newsletter</h4>
+            <p>Subscribe to get updates on new tools and features</p>
+            <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+                <input type="email" placeholder="Your email address" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2023 ToolGrid. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- Footer Modal for various sections -->
+<div id="footerModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-title" id="footerModalTitle">Section Title</h2>
+            <button class="close-btn" onclick="closeModal('footerModal')">&times;</button>
+        </div>
+        <div class="modal-body" id="footerModalContent">
+            <!-- Content will be inserted here dynamically -->
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Footer Styles */
+    .footer {
+        background: #1e293b;
+        color: white;
+        padding: 3rem 2rem 1rem;
+        margin-top: 3rem;
+    }
+
+    .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .footer-section h3 {
+        color: #3b82f6;
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+    }
+
+    .footer-section h4 {
+        color: #f8fafc;
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+    }
+
+    .footer-section p {
+        color: #cbd5e1;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+    }
+
+    .footer-section ul {
+        list-style: none;
+    }
+
+    .footer-section ul li {
+        margin-bottom: 0.75rem;
+    }
+
+    .footer-section ul li a {
+        color: #cbd5e1;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        display: block;
+    }
+
+    .footer-section ul li a:hover {
+        color: #3b82f6;
+    }
+
+    .social-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .social-links a {
+        color: #cbd5e1;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: color 0.3s ease;
+    }
+
+    .social-links a:hover {
+        color: #3b82f6;
+    }
+
+    .newsletter-form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .newsletter-form input {
+        padding: 0.75rem;
+        border: none;
+        border-radius: 6px;
+        background: #334155;
+        color: white;
+    }
+
+    .newsletter-form input::placeholder {
+        color: #94a3b8;
+    }
+
+    .newsletter-form button {
+        padding: 0.75rem;
+        border: none;
+        border-radius: 6px;
+        background: #3b82f6;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .newsletter-form button:hover {
+        background: #2563eb;
+    }
+
+    .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        margin-top: 2rem;
+        border-top: 1px solid #334155;
+        color: #94a3b8;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .footer-content {
+            grid-template-columns: 1fr;
+        }
+        
+        .footer {
+            padding: 2rem 1rem 1rem;
+        }
+    }
+</style>
+
+<script>
+    // Footer content data
+    const footerContent = {
+        about: {
+            title: "About ToolGrid",
+            content: `<p>ToolGrid is a curated directory of the best digital tools for professionals across various industries. Our mission is to help you discover the perfect tools to enhance your workflow, boost productivity, and achieve your goals.</p>
+                     <p>Founded in 2023, we've helped thousands of users find the right tools for their specific needs. Our team of experts carefully reviews and tests each tool to ensure we only recommend high-quality solutions.</p>`
+        },
+        team: {
+            title: "Our Team",
+            content: `<p>We're a diverse team of tech enthusiasts, designers, and productivity experts passionate about finding and sharing the best tools.</p>
+                     <p>Our team includes:</p>
+                     <ul>
+                         <li>Product experts who test and review each tool</li>
+                         <li>Designers who ensure great user experience</li>
+                         <li>Developers who maintain our platform</li>
+                         <li>Content creators who provide valuable insights</li>
+                     </ul>`
+        },
+        careers: {
+            title: "Careers at ToolGrid",
+            content: `<p>Interested in joining our team? We're always looking for talented individuals who share our passion for technology and productivity.</p>
+                     <p>Current openings:</p>
+                     <ul>
+                         <li>Content Writer - Remote</li>
+                         <li>Frontend Developer - Hybrid</li>
+                         <li>Product Researcher - Remote</li>
+                     </ul>
+                     <p>Send your resume to careers@toolgrid.com</p>`
+        },
+        contact: {
+            title: "Contact Us",
+            content: `<p>We'd love to hear from you! Get in touch with us through any of the following channels:</p>
+                     <ul>
+                         <li>Email: hello@toolgrid.com</li>
+                         <li>Twitter: @toolgrid</li>
+                         <li>LinkedIn: ToolGrid Official</li>
+                     </ul>
+                     <p>For support inquiries, please include details about your issue and we'll respond within 24 hours.</p>`
+        },
+        blog: {
+            title: "Our Blog",
+            content: `<p>Check out our blog for the latest tool reviews, productivity tips, and industry insights.</p>
+                     <p>Popular articles:</p>
+                     <ul>
+                         <li>Top 10 AI Tools for Content Creation in 2023</li>
+                         <li>How to Streamline Your Workflow with Automation</li>
+                         <li>The Ultimate Guide to Project Management Tools</li>
+                     </ul>
+                     <p>New articles published every week!</p>`
+        },
+        tutorials: {
+            title: "Tutorials & Guides",
+            content: `<p>Our tutorials help you get the most out of your tools with step-by-step guides and best practices.</p>
+                     <p>Explore our tutorial categories:</p>
+                     <ul>
+                         <li>Getting Started Guides</li>
+                         <li>Advanced Features</li>
+                         <li>Integration Tutorials</li>
+                         <li>Productivity Tips</li>
+                     </ul>`
+        },
+        webinars: {
+            title: "Webinars & Events",
+            content: `<p>Join our free webinars to learn from industry experts and discover new tools and techniques.</p>
+                     <p>Upcoming webinars:</p>
+                     <ul>
+                         <li>Automation Tools Masterclass - Next Thursday</li>
+                         <li>AI Tools for Marketers - Next Month</li>
+                         <li>Design Tools Workshop - Coming Soon</li>
+                     </ul>
+                     <p>All webinars are recorded and available for replay if you can't attend live.</p>`
+        },
+        faq: {
+            title: "Frequently Asked Questions",
+            content: `<p>Find answers to common questions about ToolGrid.</p>
+                     <div class="faq-item">
+                         <h4>How do you select tools for ToolGrid?</h4>
+                         <p>Our team tests each tool against a set of criteria including usability, features, pricing, and customer support.</p>
+                     </div>
+                     <div class="faq-item">
+                         <h4>Can I suggest a tool to be added?</h4>
+                         <p>Absolutely! Use our "Submit Tool" form to suggest new tools for consideration.</p>
+                     </div>
+                     <div class="faq-item">
+                         <h4>Is ToolGrid free to use?</h4>
+                         <p>Yes, ToolGrid is completely free for users. We generate revenue through affiliate partnerships.</p>
+                     </div>`
+        },
+        privacy: {
+            title: "Privacy Policy",
+            content: `<p>Last updated: October 15, 2023</p>
+                     <p>At ToolGrid, we take your privacy seriously. This Privacy Policy describes how we collect, use, and share your personal information.</p>
+                     
+                     <h4>Information We Collect</h4>
+                     <p>We collect information you provide directly to us, such as when you create an account, subscribe to our newsletter, or contact us for support.</p>
+                     
+                     <h4>How We Use Your Information</h4>
+                     <p>We use the information we collect to:</p>
+                     <ul>
+                         <li>Provide, maintain, and improve our services</li>
+                         <li>Send you technical notices and support messages</li>
+                         <li>Respond to your comments and questions</li>
+                         <li>Communicate with you about products and services</li>
+                     </ul>
+                     
+                     <h4>Sharing of Information</h4>
+                     <p>We do not sell your personal information to third parties. We may share information with vendors and service providers who need access to provide services on our behalf.</p>`
+        },
+        terms: {
+            title: "Terms of Service",
+            content: `<p>Last updated: October 15, 2023</p>
+                     <p>Please read these Terms of Service carefully before using the ToolGrid website.</p>
+                     
+                     <h4>Accounts</h4>
+                     <p>When you create an account with us, you must provide accurate and complete information. You are responsible for safeguarding your password.</p>
+                     
+                     <h4>Content</h4>
+                     <p>Our Service allows you to post, link, store, share and otherwise make available certain information. You are responsible for the content that you post.</p>
+                     
+                     <h4>Links to Other Websites</h4>
+                     <p>Our Service may contain links to third-party websites that are not owned or controlled by ToolGrid. We have no control over and assume no responsibility for the content or practices of any third-party websites.</p>`
+        },
+        cookies: {
+            title: "Cookie Policy",
+            content: `<p>Last updated: October 15, 2023</p>
+                     <p>This Cookie Policy explains how ToolGrid uses cookies and similar technologies to recognize you when you visit our website.</p>
+                     
+                     <h4>What are cookies?</h4>
+                     <p>Cookies are small data files that are placed on your computer or mobile device when you visit a website.</p>
+                     
+                     <h4>How we use cookies</h4>
+                     <p>We use cookies for several purposes:</p>
+                     <ul>
+                         <li>Authentication - to remember your login state</li>
+                         <li>Preferences - to remember your settings</li>
+                         <li>Analytics - to understand how you use our site</li>
+                         <li>Advertising - to show relevant ads</li>
+                     </ul>
+                     
+                     <h4>Controlling cookies</h4>
+                     <p>You can control and/or delete cookies as you wish. You can delete all cookies that are already on your computer and set most browsers to prevent them from being placed.</p>`
+        },
+        disclaimer: {
+            title: "Disclaimer",
+            content: `<p>The information contained on ToolGrid website is for general information purposes only.</p>
+                     
+                     <h4>Tool Reviews</h4>
+                     <p>While we strive to provide accurate and up-to-date information about the tools we feature, we make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability or availability with respect to the tools or the information contained on the website for any purpose.</p>
+                     
+                     <h4>Affiliate Links</h4>
+                     <p>ToolGrid may receive compensation from companies we feature through affiliate partnerships. This does not influence our reviews or recommendations.</p>
+                     
+                     <h4>Professional Advice</h4>
+                     <p>The content on ToolGrid does not constitute professional advice. We recommend doing your own research before making any purchasing decisions.</p>`
+        }
+    };
+
+    // Function to show footer section in modal
+    function showSection(section) {
+        const content = footerContent[section];
+        if (content) {
+            document.getElementById('footerModalTitle').textContent = content.title;
+            document.getElementById('footerModalContent').innerHTML = content.content;
+            document.getElementById('footerModal').classList.add('show');
+        }
+    }
+
+    // Handle newsletter subscription
+    function handleNewsletter(event) {
+        event.preventDefault();
+        const email = event.target.querySelector('input[type="email"]').value;
+        alert(`Thank you for subscribing with ${email}! You'll hear from us soon.`);
+        event.target.reset();
+    }
+
+    // Add this to your existing setupTextareaCounters function if needed
+    // Currently not needed for the footer
+    </script>
 </body>
 </html>
